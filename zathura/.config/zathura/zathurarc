@@ -1,0 +1,67 @@
+# Zathura configuration file
+# See man `man zathurarc'
+
+# Open document in fit-width mode by default
+set adjust-open "width"
+
+# One page per row by default
+set pages-per-row 1
+
+#stop at page boundries
+set scroll-page-aware "true"
+
+#zoom settings
+set zoom-min 10
+
+# set guioptions ""
+
+# zathurarc-dark
+set font "inconsolata 15"
+set default-bg "#151515" #00
+set default-fg "#E0E0E0" #01
+
+set statusbar-bg "#202020" #01
+set statusbar-fg "#B0B0B0" #04
+
+set inputbar-bg "#151515" #00 currently not used
+set inputbar-fg "#B0B0B0" #02
+
+set notification-error-bg "#AC4142" #08
+set notification-error-fg "#151515" #00
+
+set notification-warning-bg "#F4BF75" #08  old: #AC4142
+set notification-warning-fg "#151515" #00
+
+set highlight-color "#F4BF75" #0A 
+set highlight-active-color "#6A9FB5" #0D
+
+set completion-highlight-bg "#75B5AA" #0C
+set completion-highlight-fg "#303030" #02
+
+set completion-bg "#303030" #02
+set completion-fg "#75B5AA" #0C
+
+set index-bg "" #02
+set index-fg "#75B5AA" #0C
+set index-active-bg "#75B5AA" #0C
+set index-active-fg "#303030" #02
+
+set notification-bg "#00BCD4" #0B old: "#90A959"
+set notification-fg "#151515" #00
+
+set recolor-lightcolor "#151515" #00
+set recolor-darkcolor "#E0E0E0" #06 "#7fffd4"
+set recolor "true"
+
+# setting recolor-keep true will keep any color your pdf has.
+# if it is false, it'll just be black and white
+# Shortcut (CTRL + R) to Disable/Enable 
+# then (SHIFT + R) to Reload the document
+set recolor-keephue "true" 
+
+#Defines if original image colors should be kept while recoloring.
+#recolor-reverse-video "true"
+
+set scroll-step 200
+#map u exec "konsole"
+

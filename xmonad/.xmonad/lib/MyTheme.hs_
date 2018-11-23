@@ -1,0 +1,10 @@
+{-# LANGUAGE FlexibleInstances, FlexibleContexts, NoMonomorphismRestriction, AllowAmbiguousTypes, DeriveDataTypeable, TypeSynonymInstances, MultiParamTypeClasses #-}
+{-# OPTIONS_GHC -fno-warn-missing-signatures -fwarn-unused-imports #-}
+module MyTheme where
+
+import XMonad
+
+myNormalBorderColor  = "#8F7056" -- Colors
+myFocusedBorderColor = "#8C5D2D"
+
+

@@ -1,0 +1,527 @@
+;-------------------------------------------------------------------------------
+; GLOBAL                                                                    {{{
+;-------------------------------------------------------------------------------
+
+[globals]
+; HDMI-1 VGA-0 eDP-1 LVDS
+monitor_left = HDMI-1
+monitor_right = eDP-1
+
+wlan_card = wlp8s0
+eth_card = enp9s0
+
+; To list available cards use: $ ls -1 /sys/class/backlight/
+backlight_card = intel_backlight
+
+; To list battery & adapter: $ ls -1 /sys/class/power_supply/
+battery = BAT1
+adapter = ACAD
+full-at = 57
+
+;---------------------------------------------------------------------------}}}
+; COLORS                                                                    {{{
+;-------------------------------------------------------------------------------
+
+[colors]
+transparent = #00000000
+semitransparent = #5a000000
+
+bg-l = #074C33
+bg-l2 = #B3074C33
+bg-l3 = #5A074C33
+
+bg-d = #076B4B
+bg-d2 = #B3076B4B
+bg-d3 = #5A076B4B
+
+testcolor3 = #4DC48F
+
+alert = #bd2c40
+darkgrey = #2e2e2e
+lightgrey = #444444
+lime = #CADC79
+peach = #FFCD98
+salmon = #d97464
+
+; xresource colors generate by pyWal
+xcolor0 = ${xrdb:color0}
+xcolor1 = ${xrdb:color1}
+xcolor2 = ${xrdb:color2}
+xcolor3 = ${xrdb:color3}
+xcolor4 = ${xrdb:color4}
+xcolor5 = ${xrdb:color5}
+xcolor6 = ${xrdb:color6}
+xcolor7 = ${xrdb:color7}
+xcolor8 = ${xrdb:color8}
+xcolor9 = ${xrdb:color9}
+xcolor10 = ${xrdb:color10}
+xcolor11 = ${xrdb:color11}
+xcolor12 = ${xrdb:color12}
+xcolor13 = ${xrdb:color13}
+xcolor14 = ${xrdb:color14}
+xcolor15 = ${xrdb:color15}
+
+smxcolor0 = #04080B
+smxcolor1 = #074C33
+smxcolor2 = #0D612F
+smxcolor3 = #076B4B
+smxcolor4 = #16B752
+smxcolor5 = #099B62
+smxcolor6 = #A69167
+smxcolor7 = #4DC48F
+smxcolor8 = #666666
+smxcolor9 = #074C33
+smxcolor10 = #0D612F
+smxcolor11 = #076B4B
+smxcolor12 = #16B752
+smxcolor13 = #099B62
+smxcolor14 = #A69167
+smxcolor15 = #4DC48F
+
+background = ${self.semitransparent}
+background-alt =
+foreground = ${self.xcolor15}
+foreground-alt =
+
+;---------------------------------------------------------------------------}}}
+; SEPARATOR                                                                 {{{
+;-------------------------------------------------------------------------------
+
+[separator]
+def_left= ${self.arrow_ftl}
+def_right= ${self.arrow_ftl}
+alt_left=${self.angle_ftl}
+alt_right=${self.angle_ftri}
+
+arrow_ftl=	
+arrow_ftr=		
+arrow_etl=	
+arrow_etr=	
+
+angle_ftl=
+angle_ftr=
+angle_ftri=
+angle_ftli=
+angle_etl=
+angle_etr=
+
+curve_ftr=
+curve_ftl=
+curve_etr=
+curve_etl=
+
+;---------------------------------------------------------------------------}}}
+; BAR BASE                                                                  {{{
+;-------------------------------------------------------------------------------
+
+[bar/default]
+monitor = ${globals.monitor_left}
+monitor-fallback = ${globals.monitor_right}
+width = 100%
+height = 30
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+fixed-center = true
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Input Mono:style=Bold:size=11;4
+font-1 = FontAwesome:style=Regular:size=11;4
+font-2 = "Hurmit Nerd Font:style=Medium:size=16;3"
+
+border-right-size = 0
+border-right-color = ${colors.foreground}
+
+padding-left = 0
+padding-right = 0
+
+;---------------------------------------------------------------------------}}}
+; BAR TOP                                                                   {{{
+;-------------------------------------------------------------------------------
+
+[bar/top]
+inherit = bar/default
+bottom = false
+
+modules-left = powermenu
+modules-center = test2
+modules-right = date cpu temperature memory battery volume
+
+tray-position = right
+tray-padding = 2
+tray-transparent = false
+tray-background = ${colors.bg-d}
+
+border-left-size = 10
+border-left-color = ${colors.semitransparent}
+
+;---------------------------------------------------------------------------}}}
+; BAR BOTTOM                                                                {{{
+;-------------------------------------------------------------------------------
+
+[bar/bottom]
+inherit = bar/default
+bottom = true
+
+modules-left = test_window_count test_layout_name 
+modules-center = 
+modules-right = workspace
+
+line-size = 3
+line-color = #f00
+
+;---------------------------------------------------------------------------}}}
+; MODULE POWERMENU                                                          {{{
+;-------------------------------------------------------------------------------
+
+[module/powermenu]
+type = custom/menu
+
+format-foreground = ${colors.xcolor1}
+format-background = ${colors.semitransparent}
+
+label-open = "  "
+label-open-font = 4
+label-close = "  "
+label-close-foreground = ${colors.alert}
+label-separator = " » "
+label-separator-foreground = ${colors.xcolor1}
+
+; lock
+menu-0-0 = 
+menu-0-0-exec = sh ~/scripts/lock.sh
+menu-0-0-foreground = ${colors.lime}
+; sleep
+menu-0-1 = 
+menu-0-1-exec = systemctl suspend
+menu-0-1-foreground = ${colors.peach}
+; logout
+menu-0-2 = 
+menu-0-2-exec = pkill x
+menu-0-2-foreground = ${colors.peach}
+; reboot
+menu-0-3 = 
+menu-0-3-exec = systemctl reboot
+menu-0-3-foreground = ${colors.salmon}
+; shutdown
+menu-0-4 = "  "
+menu-0-4-exec = systemctl poweroff
+menu-0-4-foreground = ${colors.salmon}
+
+;---------------------------------------------------------------------------}}}
+; MODULE XWINDOW                                                            {{{
+;-------------------------------------------------------------------------------
+
+[module/xwindow]
+type = internal/xwindow
+
+format-prefix = " "
+format-foreground = ${colors.xcolor7}
+format-background = ${colors.semitransparent}
+
+label = %title%
+label-maxlen = 25
+
+;---------------------------------------------------------------------------}}}
+; MODULE XWORKSPACE                                                         {{{
+;-------------------------------------------------------------------------------
+
+[module/workspace]
+type = internal/xworkspaces
+icon-0 = 1;
+icon-1 = 2;
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;
+icon-5 = 6;#
+icon-7 = 8;
+icon-default = 
+
+format = <label-state>
+label-monitor = %name%
+
+label-active = %{B#5a000000 F#B3074C33}%{F- B#B3074C33}%{o#4dC48F} %icon% %{B#5a000000 F#B3074C33}%{F- B- -o}
+
+label-active-foreground = #4dC48F
+label-active-background = #333
+
+label-empty = %icon% 
+label-empty-background = ${colors.background}
+label-empty-foreground = ${colors.xcolor1}
+label-empty-padding = 1
+
+label-occupied = %icon%
+;label-occupied-background = #950
+label-occupied-underline = #555555
+
+label-urgent = %icon%
+label-urgent-background = #389
+label-urgent-underline = #389
+
+;---------------------------------------------------------------------------}}}
+; MODULE DATE & TIME                                                        {{{
+;-------------------------------------------------------------------------------
+
+[module/date]
+type = internal/date
+interval = 1
+
+time = "   %H:%M "
+time-alt = ""
+
+date = ""
+date-alt = "  %d/%m/%Y"
+
+format-foreground = ${colors.testcolor3}
+format-background = ${colors.semitransparent}
+
+;format-prefix = ${separator.angle_ftl}	
+;format-prefix-foreground = ${self.format-background}
+;format-prefix-background = ${bar/default.background}
+
+label = " %date%%time% "
+
+;---------------------------------------------------------------------------}}}
+; MODULE CPU                                                                {{{
+;-------------------------------------------------------------------------------
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+
+;format-prefix = " "
+format-foreground = ${colors.testcolor3}
+format-background = ${colors.bg-l}
+
+format-prefix = ${separator.angle_ftl}	
+format-prefix-foreground = ${self.format-background}
+format-prefix-background = ${module/date.format-background}
+
+format-suffix = ${separator.angle_ftri}	
+format-suffix-foreground = ${self.format-background}
+format-suffix-background = ${module/temperature.format-background}
+
+label =  %percentage%%
+
+;---------------------------------------------------------------------------}}}
+; MODULE TEMPERATURE                                                        {{{
+;-------------------------------------------------------------------------------
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 65
+interval = 2
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+format-foreground = ${colors.testcolor3}
+format-background = ${colors.bg-l2}
+format-warn-foreground = ${colors.alert}
+format-warn-background = ${colors.xcolor1}
+
+;format-prefix = ${separator.angle_ftli}	
+;format-prefix-foreground = ${self.format-background}
+;format-prefix-background = ${module/cpu.format-background}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+
+;---------------------------------------------------------------------------}}}
+; MODULE RAM                                                                {{{
+;-------------------------------------------------------------------------------
+
+[module/memory]
+type = internal/memory
+interval = 1
+
+format-foreground = ${colors.testcolor3}
+format-background = ${colors.bg-l}
+format-margin-top = -5
+
+format-prefix = ${separator.angle_ftl}	
+format-prefix-foreground = ${self.format-background}
+format-prefix-background = ${module/temperature.format-background}
+
+format-suffix = ${separator.angle_ftri}	
+format-suffix-foreground = ${self.format-background}
+format-suffix-background = ${module/battery.background}
+
+label =  %percentage_used%%
+
+;---------------------------------------------------------------------------}}}
+; MODULE BATTERY                                                            {{{
+;-------------------------------------------------------------------------------
+
+[module/battery]
+type = internal/battery
+; To list battery & adapter: $ ls -1 /sys/class/power_supply/
+battery = ${globals.battery}
+adapter = ${globals.adapter}
+full-at = ${globals.full-at}
+
+background = ${colors.bg-l2}
+foreground = ${colors.testcolor3}
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = ${self.foreground}
+format-charging-background = ${self.background}
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${self.foreground}
+format-discharging-background = ${self.background}
+
+format-full = <label-full>
+format-full-foreground = ${self.foreground}
+format-full-background = ${self.background}
+
+;format-full-prefix = ${separator.angle_ftli}	
+;format-full-prefix-foreground = ${self.format-full-background}
+;format-full-prefix-background = ${colors.bg-d}
+
+label-charging = "%percentage%% "
+label-discharging = "%percentage%% "
+label-discharging-foreground = ${colors.xcolor7}
+label-full = "  "
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = ${colors.alert}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+;---------------------------------------------------------------------------}}}
+; MODULE VOLUME                                                             {{{
+;-------------------------------------------------------------------------------
+
+[module/volume]
+type = internal/alsa
+
+master-soundcard =  hw:1
+speaker-soundcard = hw:1
+headphone-soundcard = hw:1
+mapping = true
+
+format-volume = <ramp-volume><label-volume>
+;format-volume = <bar-volume>
+
+
+label-volume = %percentage%
+;label-volume-foreground = ${colors.xcolor7}
+label-volume-foreground = ${colors.testcolor3}
+label-volume-background = ${colors.bg-l}
+
+format-volume-prefix = ${separator.angle_ftl}	
+format-volume-prefix-foreground = ${self.label-volume-background}
+format-volume-prefix-background = ${module/battery.background}
+
+format-volume-suffix = ${separator.angle_ftri}	
+format-volume-suffix-foreground = ${self.label-volume-background}
+format-volume-suffix-background = ${bar/top.tray-background}
+
+label-muted =  
+label-muted-foreground = ${colors.xcolor0}
+label-muted-background = ${colors.alert}
+
+format-muted-prefix = ${separator.angle_ftl}	
+format-muted-prefix-foreground = ${self.label-muted-background}
+format-muted-prefix-background = ${module/battery.background}
+
+format-muted-suffix = ${separator.angle_ftri}	
+format-muted-suffix-foreground = ${self.label-muted-background}
+format-muted-suffix-background = ${bar/top.tray-background}
+
+ramp-volume-0 = " "
+ramp-volume-0-foreground = ${colors.testcolor3}
+ramp-volume-0-background = ${colors.bg-l}
+ramp-volume-1 = " "
+ramp-volume-1-foreground = ${colors.testcolor3}
+ramp-volume-1-background = ${colors.bg-l}
+ramp-volume-2 = " "
+ramp-volume-2-foreground = ${colors.testcolor3}
+ramp-volume-2-background = ${colors.bg-l}
+ramp-volume-3 = " "
+ramp-volume-3-foreground = ${colors.testcolor3}
+ramp-volume-3-background = ${colors.bg-l}
+
+;---------------------------------------------------------------------------}}}
+; CUSTOM MODULE WINDOWS COUNT                                               {{{
+;-------------------------------------------------------------------------------
+[module/window_count]
+type = custom/script
+interval = 1
+label = %{A1:rofi -width 30 -location 1 -xoffset 3 -show window:}%output% %{A}
+exec = echo "$(($(lsw | wc -l)-2))"
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+
+;---------------------------------------------------------------------------}}}
+; MODULE TEST                                                               {{{
+;-------------------------------------------------------------------------------
+[module/test_window_count]
+type = custom/script
+interval = 1
+label =%{B#074C33 F#4dC48F }  %output% %{B#5A076B4B F#074C33}
+exec = echo "$(($(lsw | wc -l)-2))"
+format = <label>
+;format-prefix = " "
+format-prefix-foreground = ${colors.xcolor15}
+
+[module/test_layout_name]
+type = custom/script
+interval = 0.5
+label = %{B#5A076B4B F#4dC48F} %output% %{B#5a000000 F#5A076B4B}
+exec = echo "$(xprop -root -notype _XMONAD_LOG | grep -oP "(?<=:)[^:]+" | head -1)"
+format = <label>
+label-foreground = ${colors.xcolor15}
+content-background = 
+;content-padding = 1
+
+;[module/test_layout_name]
+;type = custom/text
+;content = %{B#5A076B4B F#4dC48F} tall %{B#5a000000 F#5A076B4B}
+;content-foreground = ${colors.xcolor15}
+;content-background = 
+;;content-padding = 1
+
+[module/test]
+type = custom/text
+
+content = %{B#074C33 F#4dC48F } 3 %{B#5A076B4B F#074C33}%{B#5A076B4B F#4dC48F} tall %{B#5a000000 F#5A076B4B}
+
+content-foreground = ${colors.xcolor15}
+content-background = 
+content-padding = 1
+
+
+[module/test2]
+type = custom/text
+
+content = 
+;content = 
+
+content-foreground = ${colors.bg-l2}
+content-background = 
+content-padding = 1
+
+;;---------------------------------------------------------------------------}}}
+; vim:ft=dosini

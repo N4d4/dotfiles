@@ -1,0 +1,12 @@
+
+#/home/nada/.local/bin//wal -q -t -i ~/Immagini/wallpapers/alena_aenami_light.png 
+#./.fehbg
+
+#/home/nada/.local/bin//wal -q -t -i "${HOME}/.config/wall.png"
+# Add this to your .xinitrc or whatever file starts programs on startup.
+# -R restores the last colorscheme that was in use.
+/home/nada/.local/bin//wal -R
+/usr/bin/xrandr --auto --output HDMI-1 --primary --mode 1920x1080 --left-of eDP-1 
+/home/nada/.local/bin/set_keyboard.sh
+#polybar -r top & polybar -r bottom &
+xmonad

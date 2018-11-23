@@ -1,0 +1,18 @@
+import XMonad
+import Control.Monad (when, join)
+import XMonad.Hooks.EwmhDesktops (fullscreenEventHook, ewmh)
+import XMonad.Layout.Fullscreen (fullscreenSupport, fullscreenManageHook, fullscreenFull)
+import Data.Maybe (maybeToList)
+import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen)
+import Data.Monoid (appEndo, Endo(Endo),All(All), Any(Any))
+import XMonad.Hooks.DynamicLog
+
+
+main = do xmonad $ fullscreenSupport $ ewmh $ def
+            { terminal    = "xfce4-terminal"
+            , modMask     = mod4Mask
+            , manageHook = manageHook def
+            , logHook = dynamicLogString def >>= xmonadPropLog
+            , handleEventHook = fullscreenEventHook <+> handleEventHook def
+            , startupHook = startupHook def
+            }

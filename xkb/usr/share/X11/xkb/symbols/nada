@@ -1,0 +1,69 @@
+//2017 Modified keyboard map by N4d4  "/usr/share/X11/xkb/symbols/"
+// setxkbmap nada
+//~/.dotfiles/usr/share/X11/xkb/symbols/nada /usr/share/X11/xkb/symbols/nada
+// Add in "/usr/share/X11/xkb/rules/evdev.xml"
+//        <variant>
+//          <configItem>
+//            <name>personal</name>
+//            <description>Nada (Personal)</description>
+//          </configItem>
+//        </variant>
+
+ partial alphanumeric_keys
+ xkb_symbols "nada" {
+    include "it(basic)"
+    name[Group1]="Nada (Personal)";
+
+     //FIRST ROW
+     key <AE01> { [ 1, exclam, less                                    ] };
+     key <AE02> { [ 2, quotedbl, greater, dead_doubleacute             ] };
+
+     //SECOND ROW
+     key <AD01> { [ q, Q, exclam, Tab                                  ] };
+     key <AD02> { [ w, W, quotedbl                                     ] };
+     key <AD03> { [ e, E, dollar, EuroSign                             ] };
+     key <AD04> { [ r, R, ampersand, percent                           ] };
+     key <AD05> { [ t, T, bar                                          ] };
+     key <AD06> { [ y, Y, asciitilde                                   ] };
+     key <AD07> { [ u, U, slash                                        ] };
+     key <AD08> { [ i, I, apostrophe, grave                            ] };
+     key <AD09> { [ o, O, equal                                        ] };
+     key <AD10> { [ p, P, question                                     ] };
+     key <AD11> { [ egrave, eacute, dead_grave, dead_diaeresis         ] };
+
+     //THIRD ROW
+     key <AC01> { [ a, A, bracketleft, bracketright                    ] };
+     key <AC02> { [ s, S, braceleft, braceright                        ] };
+     key <AC03> { [ d, D, parenleft, parenright                        ] };
+     key <AC04> { [ f, F, BackSpace, BackSpace                         ] };
+     key <AC05> { [ g, G, asciitilde                                   ] };
+     key <AC06> { [ h, H, Left, Home                                   ] };
+     key <AC07> { [ j, J, Down                                         ] };
+     key <AC08> { [ k, K, Up                                           ] };
+     key <AC09> { [ l, L, Right, End                                   ] };
+
+     //FOURTH ROW
+     key <AB01> { [ z, Z, less                                         ] };
+     key <AB02> { [ x, X, greater                                      ] };
+
+     //SPECIAL CAPS LOCK
+     //key <CAPS> { [ ISO_Level3_Shift                                 ] };
+     key <CAPS> { [ ISO_Level3_Shift, ISO_Level3_Shift                 ] };
+     key <I254> { [ Escape,  Escape                                    ] };
+
+     //MENU TO SHIFT
+     key <MENU> { [ Shift_L                                            ] };
+
+     //SPACE WITH BACKSPACE
+     //key <SPCE> { [ space                                            ] };
+
+    //PSEUDO-MODIFIER TAB & BACKSLASH
+    //xcape -e "Hyper_L=Tab;Hyper_R=backslash"
+    //xcape -e "Hyper_L=Tab;Hyper_R=backslash;ISO_Level3_Shift=Escape"
+    //cat /usr/include/X11/keysymdef.h
+    key  <TAB> { [ Hyper_L, Hyper_L                                    ] };
+    key <BKSL> { [ Hyper_R, Hyper_R                                    ] };
+    key <I252> { [ Tab,  ISO_Left_Tab                                  ] };
+    key <I253> { [ backslash, bar                                      ] };
+
+};

@@ -1,0 +1,118 @@
+/* Import the CSS file.
+   Change 'dylan' to your username. */
+@import url('file:///home/nada/.cache/wal/colors.css');
+
+/* latin-ext */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Source Code Pro Black'), local('SourceCodePro-Black'), url(../font/sourcecodepro.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Source Code Pro Black'), local('SourceCodePro-Black'), url(../font/sourcecodepro2.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+body {
+    /*background: #1c1d19;*/
+    /*background: #3E515A;*/
+    background: var(--color0);
+    font-family: 'Source Code Pro';
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.focus.focus {
+    outline-color: #61B8D0;
+}
+
+h3.title {
+    /*color: #c75646; */
+    /*color: #2A373E;*/
+    color: var(--color1);
+}
+
+.content {
+    padding: 30px;
+}
+
+.links {
+    padding: 30px 20px;
+    outline: 1px solid transparent;
+    -webkit-transition: outline-color .3s ease-in-out;
+    transition: outline-color .3s ease-in-out;
+}
+
+.links_row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px 0;
+}
+
+.links_section {
+    margin: 0 10px;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    outline-offset: 10px;
+    outline: 1px solid transparent;
+    -webkit-transition: outline-color .3s ease-in-out;
+    transition: outline-color .3s ease-in-out;
+}
+
+.links_section_title {
+    margin: 0;
+    margin-bottom: 20px;
+    position: relative;
+    line-height: 30px;
+}
+
+.links_section_title,
+.links_section_title a,
+.links_section_title a:visited {
+    /*color: #c75646;*/
+    /*color: #2A373E;*/
+    color: var(--color1);
+    text-decoration: none;
+}
+
+.links_section_title:after {
+    content: ' ';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    position: absolute;
+    /*background: #c75646;*/
+    /*background: #2A373E;*/
+    background: var(--color1);
+}
+
+.links_ul {
+    padding: 0;
+    margin: 0;
+}
+
+.links_li {
+    list-style: none;
+}
+
+.links_a {
+    text-decoration: none;
+    /*color: #dd7b3b;*/
+    /*color: #8CBC65;*/ 
+    /*color: #66cc99;*/
+    color: var(--color7);
+    display: block;
+    line-height: 35px;
+}
