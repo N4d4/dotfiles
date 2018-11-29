@@ -19,7 +19,7 @@ import XMonad.Config.Xfce
 import System.Exit
 
 -- Custom Module in /lib
-import MyTheme
+--import MyTheme
 
 -- Util
 import XMonad.Util.NamedScratchpad (NamedScratchpad(NS), namedScratchpadManageHook, namedScratchpadAction, customFloating)
@@ -116,15 +116,6 @@ import qualified Data.Map as M
 ------------------------------------------------------------------------}}}
 -- GLOBALS                                                              {{{
 ---------------------------------------------------------------------------
--- Border size
-myBorderWidth   = 4
-
--- Border colors for unfocused and focused windows, respectively.
--- moved in /lib/MyTheme.hs
---myNormalBorderColor  = "#074C34" -- Colors
---myFocusedBorderColor = "#17B753"
---myNormalBorderColor  = "#8F7056" -- Colors
---myFocusedBorderColor = "#8C5D2D"
 
 -- modMask lets you specify which modkey you want to use.
 -- mod1Mask ("left alt")
@@ -170,6 +161,16 @@ fullDim = 12 * 2
 ------------------------------------------------------------------------}}}
 -- THEMES                                                               {{{
 ---------------------------------------------------------------------------
+-- Border size
+myBorderWidth   = 4
+
+-- Border colors for unfocused and focused windows, respectively.
+-- moved in /lib/MyTheme.hs
+--myNormalBorderColor  = "#074C34" -- Colors
+--myFocusedBorderColor = "#17B753"
+myNormalBorderColor  = "#8F7056" -- Colors
+myFocusedBorderColor = "#8C5D2D"
+
 -- Colors for text and backgrounds of each tab when in "Tabbed" layout.
 tabConfig = def {
     activeBorderColor   = "#17b753",
@@ -542,8 +543,8 @@ myKeys1 conf = mkKeymap conf $
     , ("M-b d 1", windows copyToAll)
     , ("M-b d 2", killAllOtherCopies)
     -- minimize / maximize focused windows
-    , ("M-b m", withFocused minimizeWindow)
-    , ("M-b S-m", sendMessage RestoreNextMinimizedWin)
+    --, ("M-b m", withFocused minimizeWindow)
+    --, ("M-b S-m", sendMessage RestoreMinimizedWin)
     ]
     ++
 
@@ -839,6 +840,22 @@ myLogHook = do dynamicLogString logPP >>= xmonadPropLog
                         layoutText "Minimize Maximize AC"   = "Accordion"
                         layoutText "Minimize Maximize 3C"   = "2column"
                         layoutText "Minimize Maximize 2C"   = "2column"
+                        layoutText "Minimize Maximize Spacing T"    = "ReTall"
+                        layoutText "Minimize Maximize Spacing MT"   = "Mirror"
+                        layoutText "Minimize Maximize Spacing M"    = "Mosaic"
+                        layoutText "Minimize Maximize Spacing O"    = "OneBig"
+                        layoutText "Minimize Maximize Spacing TS"   = "Tabbed"
+                        layoutText "Minimize Maximize Spacing TAS"  = "TabbedAlways"
+                        layoutText "Minimize Maximize Spacing TM"   = "Master+Tab"
+                        layoutText "Minimize Maximize Spacing MM"   = "Master+TabMirror"
+                        layoutText "Minimize Maximize Spacing G"    = "Grid"
+                        layoutText "Minimize Maximize Spacing CI"   = "Circle"
+                        layoutText "Minimize Maximize Spacing SP"   = "Spiral"
+                        layoutText "Minimize Maximize Spacing FU"   = "Full"
+                        layoutText "Minimize Maximize Spacing Full" = "Full"
+                        layoutText "Minimize Maximize Spacing AC"   = "Accordion"
+                        layoutText "Minimize Maximize Spacing 3C"   = "2column"
+                        layoutText "Minimize Maximize Spacing 2C"   = "2column"
 
 ------------------------------------------------------------------------}}}
 -- MAIN CONFIG                                                          {{{
