@@ -1,0 +1,7 @@
+*.o
+*.hi
+*.log
+*.log.old
+
+/xmonad/.xmonad/xmonad.errors
+/xmonad/.xmonad/xmonad-x86_64-linux
